@@ -1,23 +1,13 @@
 # covid-vaccine-informer
-In the script added in the repo replace 
-1) The dictrict id
-2) Email on which you want to get the notification 
-3) Email from which you want to send info Better create a new one for this in gmail
+Will send a mail when vaccine is available
 
+## Docker build
+Sample build script
+``` docker build --build-arg SENDER_EMAIL=<email-from-which-you-will-send-mail>  --build-arg SENDER_EMAIL_PASSWORD=<password-of-email-from-which-you-will-send-mail> -t vaccine-informer . ```
 
-## Dependencies
-1) sudo apt-get install ssmtp
-2) sudo apt-get install jq
+Sample script to run the script 
+```docker run -e DIST_ID=<district-id> -e RECIEVER_EMAIL=<email-on-which-you-want-to-send-notification> -t vaccine-informer```
 
-## Email configuration for gmail
-Add following conf to this path ```/etc/ssmtp/ssmtp.conf```
-
-```
-root=<new-mail-from-which-mail-to-be-send>
-mailhub=smtp.gmail.com:465
-rewriteDomain=gmail.com
-AuthUser=<new-mail-from-which-mail-to-be-send>
-AuthPass=<new-mail-password-from-which-mail-to-be-send>
-FromLineOverride=YES
-UseTLS=YES
-```
+## Caution 
+1) Make a new email which can be used to send the mail. As for this to work you would have to enable Allow less secure app from here https://myaccount.google.com/lesssecureapps.
+2) Email to which it can send no changes is required
