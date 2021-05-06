@@ -5,12 +5,12 @@ In the script added in the repo replace
 3) Email from which you want to send info Better create a new one for this in gmail
 
 
-##Dependencies
+## Dependencies
 1) sudo apt-get install ssmtp
 2) sudo apt-get install jq
 
-#Email configuration for gmail
-Add following conf to this path /etc/ssmtp/ssmtp.conf
+## Email configuration for gmail
+Add following conf to this path ```/etc/ssmtp/ssmtp.conf```
 
 ```
 root=<new-mail-from-which-mail-to-be-send>
