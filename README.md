@@ -10,6 +10,8 @@ Sample script to run the script
 
 ```docker run -e DIST_ID=<district-id> -e RECIEVER_EMAIL=<email-on-which-you-want-to-send-notification> -t vaccine-informer```
 
+Email for sending mails will only work with gmail
+
 ## Caution 
 1) Make a new email which can be used to send the mail. As for this to work you would have to enable Allow less secure app from here https://myaccount.google.com/lesssecureapps.
 2) Email to which it can send no changes is required
