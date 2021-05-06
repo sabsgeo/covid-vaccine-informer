@@ -27,18 +27,25 @@ do
         _jq() {
          echo ${row} | base64 --decode | jq -r ${1}
         }
-    
-       HAVE=$(_jq '.sessions[0].available_capacity')
-       if [[ "$HAVE" != "0" ]]
-       then
-    		NAME=$(_jq '.name') 
-    		PINCODE=$(_jq '.pincode')
-    		FINAL_STR="${FINAL_STR}\n${NAME} ${PINCODE}"
-       fi
+        SESSION=$(_jq '.sessions')
+        for row1 in $(echo "${SESSION}" | jq -r '.[] | @base64'); do
+            _jq1() {
+                echo ${row1} | base64 --decode | jq -r ${1}
+            }
+            HAVE=$(_jq1 '.available_capacity')
+            if [[ "$HAVE" != "0" ]]
+            then
+                    NAME=$(_jq1 '.name') 
+                    PINCODE=$(_jq1 '.pincode')
+                    DATE=$(_jq1 '.date')
+                    FINAL_STR="${FINAL_STR}\n${NAME} ${PINCODE} ${DATE}"
+            fi
+        done
     done
 
     if [[ $FINAL_STR != "" ]]
     then
+	    echo -e "$FINAL_STR"
 	    echo "To: $RECIEVER_EMAIL" > vaccine.txt
 	    echo "From: $SENDER_EMAIL" >> vaccine.txt
 	    echo "Subject: Vaccine available" >> vaccine.txt
@@ -47,6 +54,6 @@ do
     else
         echo "Not there"
     fi
-    sleep 1m
+    sleep 2m
 done
 
