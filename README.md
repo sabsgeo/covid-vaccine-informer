@@ -7,8 +7,13 @@ Sample build script
 ``` docker build --build-arg SENDER_EMAIL=<email-from-which-you-will-send-mail>  --build-arg SENDER_EMAIL_PASSWORD=<password-of-email-from-which-you-will-send-mail> -t vaccine-informer . ```
 
 Sample script to run the script 
+1) To get ID for all states
+```docker run -t vaccine-informer get_states```
+2) To get ID for all the Districts
+```docker run -t vaccine-informer get_districts <state-id>```
+3) Search for vaccine slot
+```docker run -t vaccine-informer search_slots <district-id> <email-to-get-notification>```
 
-```docker run -e DIST_ID=<district-id> -e RECIEVER_EMAIL=<email-on-which-you-want-to-send-notification> -t vaccine-informer```
 
 Email for sending mails will only work with gmail
 
