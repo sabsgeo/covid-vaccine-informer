@@ -103,7 +103,7 @@ then
         else
             echo "Not there"
         fi
-        sleep 2m
+        sleep 1m
     done
     exit 0
 fi
