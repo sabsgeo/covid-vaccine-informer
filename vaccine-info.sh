@@ -35,8 +35,8 @@ do
             HAVE=$(_jq1 '.available_capacity')
             if [[ "$HAVE" != "0" ]]
             then
-                    NAME=$(_jq1 '.name') 
-                    PINCODE=$(_jq1 '.pincode')
+                    NAME=$(_jq '.name') 
+                    PINCODE=$(_jq '.pincode')
                     DATE=$(_jq1 '.date')
                     FINAL_STR="${FINAL_STR}\n${NAME} ${PINCODE} ${DATE}"
             fi
