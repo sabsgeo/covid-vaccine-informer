@@ -108,7 +108,7 @@ then
     exit 0
 fi
 
-echo "get_states: Go get the list of states"
+echo "get_states: Get the list of states"
 echo "get_district <state_id>: Get the list of District"
 echo "search_slots <disrtict_id> <mail-for-notification>: Gets notified when vaccine slot is there"
 exit 0
