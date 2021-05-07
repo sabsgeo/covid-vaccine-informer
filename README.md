@@ -8,10 +8,13 @@ Sample build script
 
 Sample script to run the script 
 1) To get ID for all states
+
 ```docker run -t vaccine-informer get_states```
 2) To get ID for all the Districts
+
 ```docker run -t vaccine-informer get_districts <state-id>```
 3) Search for vaccine slot
+
 ```docker run -t vaccine-informer search_slots <district-id> <email-to-get-notification>```
 
 
