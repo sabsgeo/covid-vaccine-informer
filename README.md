@@ -6,7 +6,8 @@ Sample build script
 
 ``` docker build --build-arg SENDER_EMAIL=<email-from-which-you-will-send-mail>  --build-arg SENDER_EMAIL_PASSWORD=<password-of-email-from-which-you-will-send-mail> -t vaccine-informer . ```
 
-Sample script to run the script 
+## Docker run
+Sample script to run the docker
 1) To get ID for all states
 
 ```docker run -t vaccine-informer get_states```
