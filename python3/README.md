@@ -10,7 +10,10 @@ This python script will send telegram notification if there is a vaccine slot av
 4. Save securty the api key for the telegram bot which is used for API communication
 5. Make yourself and telegram bot admin of the telegram channel so that the bot can post the messages
 6. Get the channel ID by forwarding a message from the channel to @JsonDumpBot
-7. Build the docker with ```docker build -t vaccine-python .```
+7. Build the docker with 
+
+```docker build -t vaccine-python .```
+
 
 ## Run the docker
 
