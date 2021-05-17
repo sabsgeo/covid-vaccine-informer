@@ -6,8 +6,10 @@ import sys
 
 BOT_KEY = os.environ.get('BOT_KEY')
 CHAT_ID = os.environ.get('CHAT_ID')
-if not(BOT_KEY and CHAT_ID):
-    print("Error: BOT_KEY and CHAT_ID environment variables are required to run this script")
+DIST_ID = os.environ.get('DIST_ID')
+
+if not(BOT_KEY and CHAT_ID and DIST_ID):
+    print("Error: BOT_KEY, CHAT_ID and DIST_ID environment variables are required to run this script")
     sys.exit(1)
 
 
@@ -39,7 +41,7 @@ while True:
     }
 
     params = (
-        ('district_id', '297'),
+        ('district_id', DIST_ID),
         ('date', needed_date),
     )
     response = requests.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict', headers=headers, params=params)
