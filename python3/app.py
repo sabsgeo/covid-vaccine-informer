@@ -1,3 +1,5 @@
+
+
 import requests
 import datetime
 import time
@@ -9,12 +11,12 @@ CHAT_ID = os.environ.get('CHAT_ID')
 DIST_ID = os.environ.get('DIST_ID')
 
 if not(BOT_KEY and CHAT_ID and DIST_ID):
-    print("Error: BOT_KEY, CHAT_ID and DIST_ID environment variables are required to run this script")
+    print("Error: BOT_KEY,CHAT_ID and DIST_ID environment variables are required to run this script")
     sys.exit(1)
-
 
 num_act_centers = 0
 prev_mes = []
+prev_mess_ids = []
 while True:
     bot_key = BOT_KEY
     chat_id = CHAT_ID
@@ -70,7 +72,20 @@ while True:
             send_message_url = f'https://api.telegram.org/bot{bot_key}/sendMessage?chat_id={chat_id}&text={mes}&parse_mode=markdown'
             res = requests.post(send_message_url)
             if (res.status_code == 200):
-                print("Notification Send.")        
+                print("Notification Send.")
+                now_id = res.json().get('result').get('message_id')
+                prev_mess_ids.append(now_id)
+                for del_id in prev_mess_ids:
+                    if (del_id is not now_id):
+                        delete_message_url = f'https://api.telegram.org/bot{bot_key}/deleteMessage?chat_id={chat_id}&message_id={del_id}'
+                        del_res = requests.post(delete_message_url)
+                        if (del_res.status_code == 200):
+                            prev_mess_ids.remove(del_id)
+                            print("Prev Message Deleted")
+                        else:
+                            print("Error in deleting")
+            else:
+                print("Error in sending message")
     prev_mes = final_message
     print("Checking again in " + str(checking_time) + " sec")
     time.sleep(checking_time)
