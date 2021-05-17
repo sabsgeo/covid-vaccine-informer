@@ -1,5 +1,3 @@
-
-
 import requests
 import datetime
 import time
@@ -67,6 +65,16 @@ while True:
     if text:
         final_message.append(text)
     
+    if (len(final_message) == 0):
+        for del_id in prev_mess_ids:
+            delete_message_url = f'https://api.telegram.org/bot{bot_key}/deleteMessage?chat_id={chat_id}&message_id={del_id}'
+            del_res = requests.post(delete_message_url)
+            if (del_res.status_code == 200):
+                prev_mess_ids.remove(del_id)
+                print("Prev Message Deleted")
+            else:
+                print("Error in deleting")
+
     if prev_mes != final_message:
         for mes in final_message:
             send_message_url = f'https://api.telegram.org/bot{bot_key}/sendMessage?chat_id={chat_id}&text={mes}&parse_mode=markdown'
